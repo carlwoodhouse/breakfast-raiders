@@ -14,8 +14,7 @@ if (isGithubActions) {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: assetPrefix,
-  basePath: basePath,
+
   images: {
     loader: 'imgix',
     path: 'https://noop',
