@@ -37,7 +37,7 @@ export default function Home({ data }) {
 
 import { google } from 'googleapis';
 
-export async function getServerSideProps({ query }) {
+export async function getStaticProps ({ query }) {
 
     const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
 
