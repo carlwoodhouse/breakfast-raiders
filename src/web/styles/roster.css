@@ -1,0 +1,63 @@
+@media (prefers-color-scheme: dark) {
+    table th {
+      color: #89ffda;
+    }
+    table td {
+      color: #afbfcd;
+    }
+    table tr {
+      border-color: #afbfcd;
+    }
+
+    table tr.death-knight td.class {
+        color: #C41E3A;
+    }
+
+    table tr.demon-hunter td.class {
+        color: #A330C9;
+    }
+
+    table tr.druid td.class {
+        color: #FF7C0A;
+    }
+
+    table tr.evoker td.class {
+        color: #33937F	;
+    }
+
+    table tr.hunter td.class {
+        color: #AAD372;
+    }
+
+    table tr.mage td.class {
+        color: #3FC7EB;
+    }
+
+    table tr.monk td.class {
+        color: #00FF98;
+    }
+
+    table tr.paladin td.class {
+        color: #F48CBA;
+    }
+
+    table tr.priest td.class {
+        color: white;
+    }
+
+    table tr.rogue td.class {
+        color: #FFF468;
+    }
+
+    table tr.shaman td.class {
+        color: #0070DD;
+    }
+
+    table tr.warlock td.class {
+        color: #8788EE;
+    }
+
+    table tr.warrior td.class {
+        color: #C69B6D;
+    }
+}
