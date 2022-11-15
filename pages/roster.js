@@ -5,7 +5,7 @@ export default function Home({ data }) {
   return (
     <div className="container-fluid p-0">
       <img src="/banshee-bg2.png" class="img-fluid" alt="..."></img>
-      <table class="table">
+      <table class="table roster">
         <thead>
           <tr>
             <th scope="col">score</th>
@@ -20,7 +20,7 @@ export default function Home({ data }) {
         <tbody>
         {data.map((user) => (
           <tr className={user[10].toString().toLowerCase().replace(" ", "-")}>
-            <th scope="row">{user[9]}</th>
+            <td scope="row">{user[9]}</td>
             <td className='class'>{user[0]}</td>
             <td>{user[1]}</td>
             <td>{user[4]}</td>
