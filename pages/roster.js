@@ -14,7 +14,6 @@ export default function Home({ data }) {
             <th scope="col">ilvl</th>
             <th scope="col">m+ (15+)</th>
             <th scope="col">m+ (highest)</th>
-            <th scope="col">realm</th>
             <th scope="col">updated</th>
           </tr>
         </thead>
@@ -26,7 +25,6 @@ export default function Home({ data }) {
             <td>{user[1]}</td>
             <td>{user[4]}</td>
             <td>{user[5]}</td>
-            <td>@{user[8]}</td>
             <td>{user[7]}</td>
           </tr>
         ))}
