@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import googleSheetsService from '../services/google.sheets.service';
 
 export default function Home({ data }) {
   {console.log(data)}
@@ -35,22 +36,9 @@ export default function Home({ data }) {
   );
 }
 
-import { google } from 'googleapis';
-
 export async function getStaticProps ({ query }) {
-
-    const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
-
-    const sheets = google.sheets({ version: 'v4', auth });
-
-    const range = 'Roster!A3:L50';
-
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: process.env.SHEET_ID,
-      range,
-    });
-
-    const data = response.data.values.sort((a, b) => a[9] < b[9] ? 1: -1);
+    const range = await googleSheetsService.getRange('Roster!A3:L50');
+    const data = range.sort((a, b) => a[9] < b[9] ? 1: -1);
     console.log(data)
 
     return { 
