@@ -2,6 +2,7 @@ import { google } from 'googleapis';
 
 class googleSheetsService {
   constructor() { }
+  
   static async getRange(range) {
     const auth = await google.auth.getClient({ scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
 
