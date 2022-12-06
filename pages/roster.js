@@ -14,8 +14,9 @@ export default function Home({ data }) {
             <th scope="col">ilvl</th>
             <th scope="col">m+ (15+)</th>
             <th scope="col">m+ (highest)</th>
-            <th scope="col">profile links</th>
+            {/* <th scope="col">profile links</th> */}
             <th scope="col">updated</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -26,12 +27,16 @@ export default function Home({ data }) {
             <td>{user[1]}</td>
             <td>{user[4]}</td>
             <td>{user[5]}</td>
-            <td><span style={{fontSize: '0.8em'}}>
+            {/* <td><span style={{fontSize: '0.8em'}}>
               <a href={"https://raider.io/characters/eu/" + user[8] + "/" + user[0] } target="_blank">[Raider.IO]</a> 
               &nbsp;-  <a href={"https://worldofwarcraft.com/en-gb/character/eu/" + user[8] + "/" + user[0] } target="_blank">[Blizz]</a>
               </span>
-            </td>
+            </td> */}
             <td>{user[7]}</td>
+            <td>
+              <a title='RaiderIO Profile' className='d-inline' href={"https://raider.io/characters/eu/" + user[8] + "/" + user[0] } target="_blank"><img src="icons/rio.svg" class="icon" alt="RaiderIO" /></a>
+              <a title='Armory Profile' className='d-inline' href={"https://worldofwarcraft.com/en-gb/character/eu/" + user[8] + "/" + user[0] } target="_blank"><img src="icons/wow.svg" class="icon" alt="Armory" /></a>
+            </td>
           </tr>
         ))}
         </tbody>
