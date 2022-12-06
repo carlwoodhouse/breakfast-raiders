@@ -8,9 +8,9 @@ table.roster tr:nth-child(even) {
 }
 
 table.roster .icon {
-    width: 30px;
-    height: 30px;
-    padding-right: 5px;
+    width: 25x;
+    height: 25px;
+    margin-right: 3px;;
 }
 
 table th {

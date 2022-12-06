@@ -16,7 +16,7 @@ export default function Home({ data }) {
             <th scope="col">m+ (highest)</th>
             {/* <th scope="col">profile links</th> */}
             <th scope="col">updated</th>
-            <th scope="col"></th>
+            <th scope="col">tools</th>
           </tr>
         </thead>
         <tbody>
@@ -34,8 +34,10 @@ export default function Home({ data }) {
             </td> */}
             <td>{user[7]}</td>
             <td>
-              <a title='RaiderIO Profile' className='d-inline' href={"https://raider.io/characters/eu/" + user[8] + "/" + user[0] } target="_blank"><img src="icons/rio.svg" class="icon" alt="RaiderIO" /></a>
+              <a title='RaiderIO Profile' className='d-inline p-right' href={"https://raider.io/characters/eu/" + user[8] + "/" + user[0] } target="_blank"><img src="icons/rio.svg" class="icon" alt="RaiderIO" /></a>
               <a title='Armory Profile' className='d-inline' href={"https://worldofwarcraft.com/en-gb/character/eu/" + user[8] + "/" + user[0] } target="_blank"><img src="icons/wow.svg" class="icon" alt="Armory" /></a>
+              <a title='Quick SIM' className='d-inline' href={"https://www.raidbots.com/simbot/quick?region=eu&realm=" + user[8] + "&name=" + user[0] } target="_blank"><img src="icons/raidbots.webp" class="icon" alt="Raidbots" /></a>
+              <a title='Logs' className='d-inline' href={"https://www.warcraftlogs.com/character/eu/" + user[8] + "&name=" + user[0] } target="_blank"><img src="icons/wcl.png" class="icon" alt="Raidbots" /></a>
             </td>
           </tr>
         ))}
@@ -56,3 +58,4 @@ export async function getStaticProps ({ query }) {
         } 
     }
 }
+
