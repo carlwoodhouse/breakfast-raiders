@@ -14,6 +14,7 @@ export default function Home({ data }) {
             <th scope="col">ilvl</th>
             <th scope="col">m+ (15+)</th>
             <th scope="col">m+ (highest)</th>
+            <th scope="col">profile links</th>
             <th scope="col">updated</th>
           </tr>
         </thead>
@@ -25,6 +26,11 @@ export default function Home({ data }) {
             <td>{user[1]}</td>
             <td>{user[4]}</td>
             <td>{user[5]}</td>
+            <td><span style={{fontSize: '0.8em'}}>
+              <a href={"https://raider.io/characters/eu/" + user[8] + "/" + user[0] } target="_blank">[Raider.IO]</a> 
+              &nbsp;-  <a href={"https://worldofwarcraft.com/en-gb/character/eu/" + user[8] + "/" + user[0] } target="_blank">[Blizz]</a>
+              </span>
+            </td>
             <td>{user[7]}</td>
           </tr>
         ))}
