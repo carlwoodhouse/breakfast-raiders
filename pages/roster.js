@@ -16,7 +16,7 @@ export default function Home({ data }) {
             <th scope="col">m+ (highest)</th>
             {/* <th scope="col">profile links</th> */}
             <th scope="col">updated</th>
-            <th scope="col"></th>
+            <th scope="col">tools</th>
           </tr>
         </thead>
         <tbody>
