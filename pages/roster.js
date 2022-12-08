@@ -6,6 +6,11 @@ export default function Home({ data }) {
   return (
     <div className="container-fluid p-0">
       <img src="/banshee-bg2.png" class="img-fluid" alt="..."></img>
+      <div class="guildlinks">
+        <a title='RaiderIO guild Profile' className='d-inline p-right' href={ "https://raider.io/guilds/eu/steamwheedle-cartel/Banshee" } target="_blank"><img src="icons/rio.svg" class="icon" alt="RaiderIO" /></a>
+        <a title='Armory guild Profile' className='d-inline' href={ "https://worldofwarcraft.com/en-gb/guild/eu/steamwheedle-cartel/banshee" } target="_blank"><img src="icons/wow.svg" class="icon" alt="Armory" /></a>
+        <a title='Guild Logs' className='d-inline' href={ "https://www.warcraftlogs.com/guild/eu/steamwheedle-cartel/banshee" } target="_blank"><img src="icons/wcl.png" class="icon" alt="WarcraftLogs" /></a>
+      </div>
       <table class="table roster">
         <thead>
           <tr>
@@ -37,7 +42,7 @@ export default function Home({ data }) {
               <a title='RaiderIO Profile' className='d-inline p-right' href={"https://raider.io/characters/eu/" + user[8] + "/" + user[0] } target="_blank"><img src="icons/rio.svg" class="icon" alt="RaiderIO" /></a>
               <a title='Armory Profile' className='d-inline' href={"https://worldofwarcraft.com/en-gb/character/eu/" + user[8] + "/" + user[0] } target="_blank"><img src="icons/wow.svg" class="icon" alt="Armory" /></a>
               <a title='Quick SIM' className='d-inline' href={"https://www.raidbots.com/simbot/quick?region=eu&realm=" + user[8] + "&name=" + user[0] } target="_blank"><img src="icons/raidbots.webp" class="icon" alt="Raidbots" /></a>
-              <a title='Logs' className='d-inline' href={"https://www.warcraftlogs.com/character/eu/" + user[8] + "/" + user[0] } target="_blank"><img src="icons/wcl.png" class="icon" alt="Raidbots" /></a>
+              <a title='Logs' className='d-inline' href={"https://www.warcraftlogs.com/character/eu/" + user[8] + "/" + user[0] } target="_blank"><img src="icons/wcl.png" class="icon" alt="Warcraft logs" /></a>
             </td>
           </tr>
         ))}
