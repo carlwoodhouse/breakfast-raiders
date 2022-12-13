@@ -29,7 +29,7 @@ export default function Home({ raiders, lastUpdated }) {
         </thead>
         <tbody>
         {raiders.map((user) => (
-          <tr className={user[10].toString().toLowerCase().replace(" ", "-")}>
+          <tr className={user[1] > 354 ? user[10].toString().toLowerCase().replace(" ", "-") : user[10].toString().toLowerCase().replace(" ", "-") + " bg-danger" }>
             <td scope="row">{user[9]}</td>
             <td className='class'>{user[0]}</td>
             <td>{user[1]}</td>
