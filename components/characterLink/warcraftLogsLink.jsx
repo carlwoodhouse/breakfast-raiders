@@ -1,5 +1,4 @@
-import CharacterLink from "./CharacterLink";
-import React from 'react';
+import CharacterLink from "./characterLink";
 
 class WarcraftLogsLink extends CharacterLink {
     render() {

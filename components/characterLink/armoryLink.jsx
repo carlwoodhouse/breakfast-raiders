@@ -1,4 +1,4 @@
-import CharacterLink from "./CharacterLink";
+import CharacterLink from "./characterLink";
 import React from 'react';
 
 class ArmoryLink extends CharacterLink {
