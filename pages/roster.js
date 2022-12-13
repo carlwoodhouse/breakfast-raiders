@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import googleSheetsService from '../services/google.sheets.service';
 
-import WarcraftlogsLink from '../components/CharacterLink/warcraftLogsLink';
-import ArmoryLink from '../components/CharacterLink/armoryLink';
+import WarcraftlogsLink from '../components/characterLink/warcraftLogsLink';
+import ArmoryLink from '../components/characterLink/armoryLink';
 
 
 export default function Home({ raiders, lastUpdated }) {
