@@ -58,7 +58,7 @@ export default function Home({ raiders, lastUpdated }) {
 
 export async function getStaticProps ({ query }) {
     const raiderRange = await googleSheetsService.getRange('Roster!A3:P50');
-    const raiders = raiderRange.sort((a, b) => { if (a[9] === b[9]) { return  a[1] > b[1] ? -1 : 1  }  else return a[9] < b[9] ? 1: -1 });
+    const raiders = raiderRange.sort((a, b) => { if (Number(a[9]) === Number(b[9])) { return  Number(a[1]) > Number(b[1]) ? -1 : 1  }  else return Number(a[9]) < Number(b[9]) ? 1: -1 });
 
     console.log(raiders);
 
