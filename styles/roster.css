@@ -27,8 +27,8 @@ table.roster tr, table.roster td {
     border-bottom: 0px;
 }
 
-table.roster tr:nth-child(even) {
-    background-color: #2b2b2b;
+table.roster tr.striped, table.table-dark tr.striped {
+    --bs-table-bg: #2c3034 !important;
 }
 
 table.roster .icon {
