@@ -48,7 +48,7 @@ export default function Home({ raiders, lastUpdated }) {
                 <td>{user.mp_fifthteens}</td>
                 <td>{user.mp_twenties}</td>
                 <td>{user.mp_max}</td>
-                <td>{user.mp_total}</td>
+                <td>{user.mp_total === "10" ? "10+" : user.mp_total}</td>
                 <td>
                   <a title='RaiderIO Profile' className='d-inline p-right' href={"https://raider.io/characters/eu/" + user.realm + "/" + user.name } target="_blank"><img src="icons/rio.svg" className="icon" alt="RaiderIO" /></a>
                   <ArmoryLink name={user.name} realm={user.realm} />
@@ -65,7 +65,7 @@ export default function Home({ raiders, lastUpdated }) {
                   <td>{alt.mp_fifthteens}</td>
                   <td>{alt.mp_twenties}</td>
                   <td>{alt.mp_max}</td>
-                  <td>{alt.mp_total}</td>
+                  <td>{alt.mp_total === "10" ? "10+" : alt.mp_total }</td>
                   <td>
                     <a title='RaiderIO Profile' className='d-inline p-right' href={"https://raider.io/characters/eu/" + alt.realm + "/" + alt.name } target="_blank"><img src="icons/rio.svg" className="icon" alt="RaiderIO" /></a>
                     <ArmoryLink name={alt.name} realm={alt.realm} />
