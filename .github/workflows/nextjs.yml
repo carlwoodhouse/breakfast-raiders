@@ -31,7 +31,6 @@ env:
   GUILD_NAME: ${{ vars.GUILD_NAME }}
   GUILD_REALM: ${{ vars.GUILD_REALM }}
   GUILD_REGION: ${{ vars.GUILD_REGION }}
-  PATH_PREFIX: ${{ vars.PATH_PREFIX }}
 
 jobs:
   # Build job
