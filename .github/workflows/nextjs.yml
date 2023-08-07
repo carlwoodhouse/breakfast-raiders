@@ -27,7 +27,7 @@ concurrency:
   cancel-in-progress: true
 
 env: 
-  SHEET_ID: "$SHEET_ID"
+  SHEET_ID: ${{ vars.SHEET_ID }}
 
 jobs:
   # Build job
