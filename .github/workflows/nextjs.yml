@@ -26,6 +26,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env: 
+  SHEET_ID: "$SHEET_ID"
+
 jobs:
   # Build job
   build:
