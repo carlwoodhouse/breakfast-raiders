@@ -14,7 +14,7 @@ class googleSheetsService {
     });
 
     const data = response.data.values;
-    return data;
+    return data ?? [];
   }
 }
 

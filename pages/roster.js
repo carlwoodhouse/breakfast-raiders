@@ -4,6 +4,7 @@ import * as Icon from 'react-bootstrap-icons';
 
 import WarcraftlogsLink from '../components/characterLink/warcraftLogsLink';
 import ArmoryLink from '../components/characterLink/armoryLink';
+import SocialLinks from '../components/guild/socialLinks';
 
 import Character from '../components/character/character'
 
@@ -11,12 +12,8 @@ import Character from '../components/character/character'
 export default function Home({ raiders, lastUpdated }) {
   return (
     <div className="container-fluid p-0">
-      <img src="/banshee-bg2.png" className="img-fluid" alt="..."></img>
-      <div className="guildlinks">
-        <a title='RaiderIO guild Profile' className='d-inline p-right' href={ "https://raider.io/guilds/eu/steamwheedle-cartel/Banshee" } target="_blank"><img src="icons/rio.svg" className="icon" alt="RaiderIO" /></a>
-        <a title='Armory guild Profile' className='d-inline' href={ "https://worldofwarcraft.com/en-gb/guild/eu/steamwheedle-cartel/banshee" } target="_blank"><img src="icons/wow.svg" className="icon" alt="Armory" /></a>
-        <a title='Guild Logs' className='d-inline' href={ "https://www.warcraftlogs.com/guild/eu/steamwheedle-cartel/banshee" } target="_blank"><img src="icons/wcl.png" className="icon" alt="WarcraftLogs" /></a>
-      </div>
+      <img src="/bg2.png" className="img-fluid" alt="..."></img>
+      <SocialLinks />
       <div className="table-responsive">
         <table className="table table-dark table-hover roster accordion">
           <thead>
