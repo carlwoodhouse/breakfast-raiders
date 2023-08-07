@@ -12,7 +12,7 @@ import Character from '../components/character/character'
 export default function Home({ raiders, lastUpdated }) {
   return (
     <div className="container-fluid p-0">
-      <img src="/bg2.png" className="img-fluid" alt="..."></img>
+      <img src={process.env.PATH_PREFIX + "/bg2.png"} className="img-fluid" alt="..."></img>
       <SocialLinks />
       <div className="table-responsive">
         <table className="table table-dark table-hover roster accordion">

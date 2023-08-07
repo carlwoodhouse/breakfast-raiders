@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
     <>
     <Head>
        <meta name="viewport" content="width=device-width, initial-scale=1" />
-       <title>banshee - a steamwheedel cartel eu guild</title>
+       <title>breakfast raiders</title>
     </Head>
     <Component {...pageProps} />
     </>
