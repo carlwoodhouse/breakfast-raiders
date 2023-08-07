@@ -13,7 +13,6 @@ export default function Home({ raiders, lastUpdated }) {
   return (
     <div className="container-fluid p-0">
       <img src="/breakfastraiders.webp" className="img-fluid" alt="..."></img>
-      <SocialLinks />
       <div className="table-responsive">
         <table className="table table-dark table-hover roster accordion">
           <thead>
@@ -78,6 +77,7 @@ export default function Home({ raiders, lastUpdated }) {
         <nav className="navbar navbar-dark fixed-bottom bg-dark">
           <div className="container-fluid">
             <a className="navbar-brand" href="https://raider.io/banshee" target="_blank">Updated: {lastUpdated}</a>
+            <SocialLinks />
           </div>
         </nav>
       </div>
