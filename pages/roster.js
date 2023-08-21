@@ -1,12 +1,15 @@
 import Image from 'next/image'
-import googleSheetsService from '../services/google.sheets.service';
 import * as Icon from 'react-bootstrap-icons';
 
 import WarcraftlogsLink from '../components/characterLink/warcraftLogsLink';
 import ArmoryLink from '../components/characterLink/armoryLink';
 import SocialLinks from '../components/guild/socialLinks';
 
-import Character from '../components/character/character'
+import Character from '../components/character/character';
+import { characterScoreCompare } from "../utils";
+
+import config from 'config';
+import rioRoster from '../api/rio/roster';
 
 
 export default function Home({ raiders, lastUpdated }) {
@@ -87,13 +90,15 @@ export default function Home({ raiders, lastUpdated }) {
 
 export async function getStaticProps ({ query }) {
     // should move to a service
-    const altRange = await googleSheetsService.getRange('AltRoster!A3:P50');
-    const alts = altRange.sort((a, b) => { if (Number(a[9]) === Number(b[9])) { return  Number(a[1]) > Number(b[1]) ? -1 : 1  }  else return Number(a[9]) < Number(b[9]) ? 1: -1 });
+    // const altRange = await googleSheetsService.getRange('AltRoster!A3:P50');
+    // const alts = altRange.sort((a, b) => { if (Number(a[9]) === Number(b[9])) { return  Number(a[1]) > Number(b[1]) ? -1 : 1  }  else return Number(a[9]) < Number(b[9]) ? 1: -1 });
 
-    const raiderRange = await googleSheetsService.getRange('Roster!A3:P50');
-    const raiders = JSON.parse(JSON.stringify(raiderRange.sort((a, b) => { if (Number(a[9]) === Number(b[9])) { return  Number(a[1]) > Number(b[1]) ? -1 : 1  }  else return Number(a[9]) < Number(b[9]) ? 1: -1 }).map(x => new Character(x, alts))));
+    // const raiderRange = await googleSheetsService.getRange('Roster!A3:P50');
+    // const raiders = JSON.parse(JSON.stringify(raiderRange.sort((a, b) => { if (Number(a[9]) === Number(b[9])) { return  Number(a[1]) > Number(b[1]) ? -1 : 1  }  else return Number(a[9]) < Number(b[9]) ? 1: -1 }).map(x => new Character(x, alts))));
 
-    console.log(raiders);
+    const g = await rioRoster.getGuild(); 
+    const alts = g.getAlts();
+    const raiders = g.getRaiders().map(x => new Character(x, alts)).sort(characterScoreCompare);
 
   
     var resetDate = new Date();
@@ -101,10 +106,11 @@ export async function getStaticProps ({ query }) {
 
     return { 
         props: {
-          raiders,
+          raiders: JSON.parse(JSON.stringify(raiders)),
           lastUpdated: (new Date()).toLocaleString(),
           resetDate: resetDate.toLocaleDateString()
         } 
     }
 }
+
 

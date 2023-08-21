@@ -1,3 +1,5 @@
+const withNodeConfig = require('next-plugin-node-config');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -17,6 +19,15 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/roster',
+        permanent: false,
+      },
+    ]
+  },
 }
 
-module.exports = nextConfig
+module.exports = withNodeConfig(nextConfig)

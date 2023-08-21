@@ -1,0 +1,19 @@
+{
+  "Guild": {
+    "name": "breakfast-raiders",
+    "realm": "tarren-mill",
+    "region": "eu",
+    "ranks": {
+      "raider": [ 0, 1, 4 ],
+      "social": [ 6 ],
+      "alt": [ 7 ]
+    },
+    "additonalCharacters": [
+      {
+         "name": "Lucile",
+         "realm": "steamwheedle-cartel",
+         "region": "eu"
+      }
+    ]
+  }
+}
