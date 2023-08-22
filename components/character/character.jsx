@@ -19,7 +19,7 @@ class Character {
     this.alts = [];
 
     if (alts.length > 0) {
-        this.alts = alts.filter(a => a.getMain() == this.Name).map(x => new Character(x, [])).sort(characterScoreCompare);
+      this.alts = alts.filter(a => a.getMain() == this.name).map(x => new Character(x, [])).sort(characterScoreCompare);
     }
   }
 }

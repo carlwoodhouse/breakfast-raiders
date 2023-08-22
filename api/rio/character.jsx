@@ -1,42 +1,68 @@
 import { slug } from '../../utils';
 import rioClient from './client'
 
+let counter = 0;
+
 class rioCharacter {
     constructor(name, realm, rank, rioChar, main) {
-        this.name = name;
-        this.realm = realm;
-        this.rank = rank;
+        counter = counter +1;
+        console.log("charCount; " + counter);
 
-        let mplus = calcMythicPlus(rioChar);
-        this.class = rioChar.class;
-        this.spec = rioChar.active_spec_name;
-        this.mp_tens = mplus[0];
-        this.mp_sixteens = mplus[1];
-        this.mp_twenties = mplus[2];
-        this.mp_max = mplus[3];
-        this.mp_total = mplus[4];
-        this.gear = {
-            ilvl: rioChar.gear.item_level_equipped,
-            tier: {
-                head: rioChar.gear.items.head?.tier == 29,
-                shoulders: rioChar.gear.items.shoulder?.tier == 29,
-                chest: rioChar.gear.items.chest?.tier == 29,
-                hands: rioChar.gear.items.hands?.tier == 29,
-                legs: rioChar.gear.items.legs?.tier == 29
-            }
-        };
+        try {
+            this.name = name;
+            this.realm = realm;
+            this.rank = rank;
 
-        this.mp_score = rioChar.mythic_plus_scores_by_season[0].scores.all
-        this.main = main;
-        this.updated - new Date();
+            let mplus = calcMythicPlus(rioChar);
+            this.class = rioChar.class;
+            this.spec = rioChar.active_spec_name;
+            this.mp_tens = mplus[0];
+            this.mp_sixteens = mplus[1];
+            this.mp_twenties = mplus[2];
+            this.mp_max = mplus[3];
+            this.mp_total = mplus[4];
+            this.gear = {
+                ilvl: rioChar.gear.item_level_equipped,
+                tier: {
+                    head: rioChar.gear.items.head?.tier == 29,
+                    shoulders: rioChar.gear.items.shoulder?.tier == 29,
+                    chest: rioChar.gear.items.chest?.tier == 29,
+                    hands: rioChar.gear.items.hands?.tier == 29,
+                    legs: rioChar.gear.items.legs?.tier == 29
+                }
+            };
+
+            this.mp_score = rioChar.mythic_plus_scores_by_season[0].scores.all
+            this.main = main;
+            this.updated - new Date();
+        }
+        catch (error) {
+            console.log(error);
+            console.log(rioChar);
+        }
     }
 
     static async initialize(name, realm, rank) {
-        const client = new rioClient();
-        const rioChar = await client.getCharacter(name, realm);
-        const main = await client.getCharacterMain(name, slug(realm));
+        try {
+            const client = new rioClient();
+            const rioChar = await client.getCharacter(name, realm);
 
-        return new rioCharacter(name, realm, rank, rioChar, main);
+            if (rioChar == undefined) {
+                return null;
+            }
+
+            const main = await client.getCharacterMain(name, slug(realm));
+
+            if (main != null) {
+                console.log("map: " + name + " > " + main)
+            }
+
+
+            return new rioCharacter(name, realm, rank, rioChar, main);
+        }
+        catch {}
+
+        return null;
     }
 
     getName() {

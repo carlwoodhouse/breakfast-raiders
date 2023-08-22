@@ -2,59 +2,68 @@ import rioCharacter from './character';
 import rioClient from './client'
 
 export default class rioGuild {
-    constructor(name, realm, raidRanks, socialRanks, altRanks) {
-       
-
-        let additionalMembers = this.additionalMembers();
-
-        this.name = name;
-        this.realm = realm;
-        this.raidRanks = raidRanks;;
-        this.socialRanks = socialRanks;
-        this.altRanks = altRanks;
+  constructor(name, realm, raidRanks, socialRanks, altRanks) {
 
 
-        // this._additionalMembers = additionalMembers;
-    }
+    let additionalMembers = this.additionalMembers();
 
-    async initialize() {
-      const client = new rioClient();
+    this.name = name;
+    this.realm = realm;
+    this.raidRanks = raidRanks;;
+    this.socialRanks = socialRanks;
+    this.altRanks = altRanks;
 
-      let rg = await client.getGuild(this.name, this.realm);
-      let rgMembers = rg.members;
-      this.members = await Promise.all(rgMembers.filter(r => this.getAllRanks().includes(r.rank)).map(async x => await rioCharacter.initialize(x.character.name, x.character.realm, x.rank)));
-    }
 
-    getAllRanks() {
-        return this.raidRanks.concat(this.socialRanks).concat(this.altRanks);
-    }
+    // this._additionalMembers = additionalMembers;
+  }
 
-    getRaiders() {
-        return this.members.filter(c => this.raidRanks.includes(c.rank));
-    }
+  async initialize() {
+    const client = new rioClient();
 
-    getAlts() {
-        return this.members.filter(c => this.altRanks.includes(c.rank));
-    }
+    let rg = await client.getGuild(this.name, this.realm);
+    let rgMembers = rg.members;
+    this.members = await Promise.all(rgMembers.filter(r => this.getAllRanks().includes(r.rank)).map(async x => await rioCharacter.initialize(x.character.name, x.character.realm, x.rank)).filter(x => x != null));
+  }
 
-    additionalMembers() {
-        // const settings = new settings();
-        // const range = settings.AdditionalCharacters;
-        // let members = [];
+  getAllRanks() {
+    return this.raidRanks.concat(this.altRanks);
+  // return this.raidRanks.concat(this.socialRanks).concat(this.altRanks);
+  }
 
-        // let numRows = range.getNumRows();
+  getRaiders() {
+    return this.members.filter(c => this.raidRanks.includes(c.rank));
+  }
 
-        // for (let r = 1; r <= numRows; r += 1) {
-        //     let name = range.getCell(r, 1).getValue();
+  getRaiderRanks() {
+    return this.raidRanks;
+  }
 
-        //     if (name === "") { break; }
+  getAlts() {
+    return this.members.filter(c => this.altRanks.includes(c.rank));
+  }
 
-        //     let rank = range.getCell(r, 3).getValue();
-        //     let realm = range.getCell(r, 2).getValue();
+  getMembers() {
+    return this.members;
+  }
 
-        //     members.push(new rioGuildCharacter(name, rank, realm));
-        // }
+  additionalMembers() {
+    // const settings = new settings();
+    // const range = settings.AdditionalCharacters;
+    // let members = [];
 
-        return rioCharacter[0];
-    }
+    // let numRows = range.getNumRows();
+
+    // for (let r = 1; r <= numRows; r += 1) {
+    //     let name = range.getCell(r, 1).getValue();
+
+    //     if (name === "") { break; }
+
+    //     let rank = range.getCell(r, 3).getValue();
+    //     let realm = range.getCell(r, 2).getValue();
+
+    //     members.push(new rioGuildCharacter(name, rank, realm));
+    // }
+
+    return rioCharacter[0];
+  }
 }

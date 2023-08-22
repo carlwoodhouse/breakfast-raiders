@@ -1,8 +1,8 @@
 import { RateLimiter } from "limiter";
 import * as cheerio from 'cheerio';
 
-const limiter = new RateLimiter({ tokensPerInterval: 60, interval: "minute" });
-const pubLimiter = new RateLimiter({ tokensPerInterval: 60, interval: "minute" });
+const limiter = new RateLimiter({ tokensPerInterval: 120, interval: "minute" });
+const pubLimiter = new RateLimiter({ tokensPerInterval: 70, interval: "minute" });
 
 export default class rioClient {
   constructor() { }
@@ -18,18 +18,23 @@ export default class rioClient {
   async getCharacterMain(name, realm, region = "eu") {
     var markup = await this.getText("https://raider.io/characters/" + region + "/" + realm + "/" + encodeURIComponent(name));
 
-    const $ = cheerio.load(markup);
+    if (markup == null) {
+      return null;
+    }
 
-    $(".about-container span").each((index, element) => {
+    const $ = cheerio.load(markup);
+    let main = null;
+
+    $(".about-container header span").each((index, element) => {
       let span = cheerio.load(element);
       let text = span.text();
 
       if (text.indexOf("Alt of" != -1)) {
-        return text.replace("(Alt of ", "").replace(")", "");
+        main = text.replace("(Alt of ", "").replace(")", "");
       }
     });
 
-     return null;
+     return main;
   }
 
   async getJson(uri, attempt = 0) {
@@ -44,7 +49,11 @@ export default class rioClient {
       console.log(error);
       console.log("uri: " + uri + ", attempt: " + attempt);
 
-      if (attempt < 5)
+      if (response?.status == 400) {
+        return null;
+      }
+
+      if (attempt < 3)
       {
         return await this.getJson(uri, attempt + 1);
       }
@@ -53,10 +62,27 @@ export default class rioClient {
     return await response?.json(); 
   }
 
-  async getText(uri) {
+  async getText(uri, attempt = 0) {
     await pubLimiter.removeTokens(1);
-    const response = await fetch(uri);
-    const data = await response.text();
-    return data; 
+    let response;
+
+    try {
+      response = await fetch(uri);
+    }
+    catch (error) {
+      console.log(error);
+      console.log("uri: " + uri + ", attempt: " + attempt);
+
+      if (response?.status == 400) {
+        return null;
+      }
+
+      if (attempt < 3)
+      {
+        return await this.getText(uri, attempt + 1);
+      }
+    }
+
+    return await response?.text(); 
   }
 }
