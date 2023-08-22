@@ -18,4 +18,4 @@ export default class presentationRoster {
        return tree.filter(t => t.getAltCount() > 0 || guild.getRaiderRanks().includes(t.rank));
      //  return tree;
     } 
-}s
+}
