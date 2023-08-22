@@ -1,30 +1,25 @@
-import { google } from 'googleapis';
+import { characterScoreCompare, csvToArray } from "../../utils";
 
 class Character {
-  //constructor() { }
+  constructor(rioCharacter, alts) {
+    this.name = rioCharacter.getName();
+    this.realm = rioCharacter.getRealm().replace(" ", "-").toLowerCase();
+    this.class = rioCharacter.getClass();
+    this.spec = rioCharacter.getSpec();
 
-  // temp
-  constructor(sheetsArrEntry, alts) { 
-    this.name = sheetsArrEntry[0];
-    this.realm = sheetsArrEntry[8]
-    this.class = sheetsArrEntry[10];
-    this.spec = sheetsArrEntry[11];
+    this.ilvl = rioCharacter.getGearLevel();
 
-    this.ilvl = sheetsArrEntry[1];
-
-    this.mp_tens = sheetsArrEntry[3];
-    this.mp_fifthteens = sheetsArrEntry[4];
-    this.mp_max = sheetsArrEntry[5];
-    this.mp_twenties = sheetsArrEntry[14];
-    this.mp_total = sheetsArrEntry[15];
-    this.mp_score = sheetsArrEntry[9];
+    this.mp_tens = rioCharacter.getMythicPlus10();
+    this.mp_sixteens = rioCharacter.getMythicPlus16();
+    this.mp_max = rioCharacter.getMythicPlusMax();
+    this.mp_twenties = rioCharacter.getMythicPlus20();
+    this.mp_total = rioCharacter.getMythicPlusTotal();
+    this.mp_score = rioCharacter.getMythicPlusScore();
 
     this.alts = [];
 
-    const filteredAlts = alts.filter(x => x[13] === this.name);
-
-    if (filteredAlts.length > 0) {
-        this.alts = filteredAlts.map(x => new Character(x, []));
+    if (alts.length > 0) {
+      this.alts = alts.filter(a => a.getMain() == this.name).map(x => new Character(x, [])).sort(characterScoreCompare);
     }
   }
 }

@@ -1,12 +1,15 @@
 import Image from 'next/image'
-import googleSheetsService from '../services/google.sheets.service';
 import * as Icon from 'react-bootstrap-icons';
 
 import WarcraftlogsLink from '../components/characterLink/warcraftLogsLink';
 import ArmoryLink from '../components/characterLink/armoryLink';
 import SocialLinks from '../components/guild/socialLinks';
 
-import Character from '../components/character/character'
+import Character from '../components/character/character';
+import { characterScoreCompare } from "../utils";
+
+import rioRoster from '../api/rio/roster';
+import presentationRoster from '../api/presentation/roster';
 
 
 export default function Home({ raiders, lastUpdated }) {
@@ -86,25 +89,18 @@ export default function Home({ raiders, lastUpdated }) {
 }
 
 export async function getStaticProps ({ query }) {
-    // should move to a service
-    const altRange = await googleSheetsService.getRange('AltRoster!A3:P50');
-    const alts = altRange.sort((a, b) => { if (Number(a[9]) === Number(b[9])) { return  Number(a[1]) > Number(b[1]) ? -1 : 1  }  else return Number(a[9]) < Number(b[9]) ? 1: -1 });
+    const roster = await presentationRoster.buildRosterTree();
 
-    const raiderRange = await googleSheetsService.getRange('Roster!A3:P50');
-    const raiders = JSON.parse(JSON.stringify(raiderRange.sort((a, b) => { if (Number(a[9]) === Number(b[9])) { return  Number(a[1]) > Number(b[1]) ? -1 : 1  }  else return Number(a[9]) < Number(b[9]) ? 1: -1 }).map(x => new Character(x, alts))));
-
-    console.log(raiders);
-
-  
     var resetDate = new Date();
     resetDate.setDate(resetDate.getDate() + (1 + 7 - resetDate.getDay()) % 7);
 
     return { 
         props: {
-          raiders,
+          raiders: JSON.parse(JSON.stringify(roster)),
           lastUpdated: (new Date()).toLocaleString(),
           resetDate: resetDate.toLocaleDateString()
         } 
     }
 }
+
 
