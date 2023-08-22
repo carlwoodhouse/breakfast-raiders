@@ -6,6 +6,7 @@ class Character {
     this.realm = rioCharacter.getRealm().replace(" ", "-").toLowerCase();
     this.class = rioCharacter.getClass();
     this.spec = rioCharacter.getSpec();
+    this.rank = rioCharacter.getRank();
 
     this.ilvl = rioCharacter.getGearLevel();
 
@@ -21,6 +22,10 @@ class Character {
     if (alts.length > 0) {
       this.alts = alts.filter(a => a.getMain() == this.name).map(x => new Character(x, [])).sort(characterScoreCompare);
     }
+  }
+
+  getAltCount() {
+    return this.alts.length;
   }
 }
 

@@ -6,7 +6,10 @@ let counter = 0;
 class rioCharacter {
     constructor(name, realm, rank, rioChar, main) {
         counter = counter +1;
-        console.log("charCount; " + counter);
+
+        if (counter % 100 == 0) {
+            console.log("charCount; " + counter);
+        }
 
         try {
             this.name = name;

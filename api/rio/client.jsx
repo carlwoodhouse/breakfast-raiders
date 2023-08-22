@@ -2,7 +2,7 @@ import { RateLimiter } from "limiter";
 import * as cheerio from 'cheerio';
 
 const limiter = new RateLimiter({ tokensPerInterval: 120, interval: "minute" });
-const pubLimiter = new RateLimiter({ tokensPerInterval: 70, interval: "minute" });
+const pubLimiter = new RateLimiter({ tokensPerInterval: 80, interval: "minute" });
 
 export default class rioClient {
   constructor() { }
@@ -16,7 +16,7 @@ export default class rioClient {
   }
 
   async getCharacterMain(name, realm, region = "eu") {
-    var markup = await this.getText("https://raider.io/characters/" + region + "/" + realm + "/" + encodeURIComponent(name));
+    var markup = await this.getText("https://raider.io/characters/" + region + "/" + realm + "/" + name);
 
     if (markup == null) {
       return null;
