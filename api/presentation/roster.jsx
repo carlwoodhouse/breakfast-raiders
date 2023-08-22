@@ -14,9 +14,8 @@ export default class presentationRoster {
         const charsWhoCouldBeMains = characters.filter(x => x.getMain() == null);
 
         const tree = charsWhoCouldBeMains.map(x => new Character(x, charsWhoCouldBeAlts)).sort(characterScoreCompare);
-
         // we'll add more filtering here for orphan alts
-       // return tree.filter(t => (guild.getRaiderRanks().includes(t.Rank) || t.alts.length > 0));
-       return tree;
+       return tree.filter(t => t.getAltCount() > 0 || guild.getRaiderRanks().includes(t.rank));
+     //  return tree;
     } 
 }
