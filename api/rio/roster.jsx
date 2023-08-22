@@ -13,6 +13,7 @@ export default class rioRoster {
             csvToIntArray(process.env.GUILD_ALT_RANKS));
 
         await guild.initialize();
+        
 
         return guild;
     }
