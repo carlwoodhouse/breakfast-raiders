@@ -3,10 +3,7 @@ import rioClient from './client'
 
 export default class rioGuild {
     constructor(name, realm, raidRanks, socialRanks, altRanks) {
-        const client = new rioClient();
-
-        let rg = client.getGuild(name, realm);
-        let rgMembers = rg.members;
+       
 
         let additionalMembers = this.additionalMembers();
 
@@ -16,12 +13,16 @@ export default class rioGuild {
         this.socialRanks = socialRanks;
         this.altRanks = altRanks;
 
-        this.members = rgMembers.filter(r => this.getAllRanks().includes(r.rank)).map(x =>  new rioCharacter(x.character.name, x.character.realm, x.rank));
-
-
-
 
         // this._additionalMembers = additionalMembers;
+    }
+
+    async initialize() {
+      const client = new rioClient();
+
+      let rg = await client.getGuild(this.name, this.realm);
+      let rgMembers = rg.members;
+      this.members = await Promise.all(rgMembers.filter(r => this.getAllRanks().includes(r.rank)).map(async x => await rioCharacter.initialize(x.character.name, x.character.realm, x.rank)));
     }
 
     getAllRanks() {
@@ -57,40 +58,3 @@ export default class rioGuild {
         return rioCharacter[0];
     }
 }
-
-class rioCharacterAlt extends rioCharacter {
-    constructor(character, main) {
-        super(character, new Date());
-        this_data.main = main;
-    }
-
-    getMain() {
-        return this._data.main;
-    }
-}
-
-function throttle(cb, delay) {
-    let wait = false;
-    let storedArgs = null;
-  
-    function checkStoredArgs () {
-      if (storedArgs == null) {
-        wait = false;
-      } else {
-        cb(...storedArgs);
-        storedArgs = null;
-        setTimeout(checkStoredArgs, delay);
-      }
-    }
-  
-    return (...args) => {
-      if (wait) {
-        storedArgs = args;
-        return;
-      }
-  
-      cb(...args);
-      wait = true;
-      setTimeout(checkStoredArgs, delay);
-    }
-  }

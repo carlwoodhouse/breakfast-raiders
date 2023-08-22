@@ -1,16 +1,11 @@
-import { csvToArray } from '../../utils';
+import { slug } from '../../utils';
 import rioClient from './client'
 
 class rioCharacter {
-    constructor(name, realm, rank) {
+    constructor(name, realm, rank, rioChar, main) {
         this.name = name;
         this.realm = realm;
         this.rank = rank;
-    }
-
-    initialize() {
-        const client = new rioClient();
-        const rioChar = client.getCharacter(this.name, this.realm);
 
         let mplus = calcMythicPlus(rioChar);
         this.class = rioChar.class;
@@ -23,16 +18,25 @@ class rioCharacter {
         this.gear = {
             ilvl: rioChar.gear.item_level_equipped,
             tier: {
-                head: rioChar.gear.items.head.tier == 29,
-                shoulders: rioChar.gear.items.shoulder.tier == 29,
-                chest: rioChar.gear.items.chest.tier == 29,
-                hands: rioChar.gear.items.hands.tier == 29,
-                legs: rioChar.gear.items.legs.tier == 29
+                head: rioChar.gear.items.head?.tier == 29,
+                shoulders: rioChar.gear.items.shoulder?.tier == 29,
+                chest: rioChar.gear.items.chest?.tier == 29,
+                hands: rioChar.gear.items.hands?.tier == 29,
+                legs: rioChar.gear.items.legs?.tier == 29
             }
         };
 
         this.mp_score = rioChar.mythic_plus_scores_by_season[0].scores.all
-        this._updated = new Date();
+        this.main = main;
+        this.updated - new Date();
+    }
+
+    static async initialize(name, realm, rank) {
+        const client = new rioClient();
+        const rioChar = await client.getCharacter(name, realm);
+        const main = await client.getCharacterMain(name, slug(realm));
+
+        return new rioCharacter(name, realm, rank, rioChar, main);
     }
 
     getName() {
@@ -107,7 +111,9 @@ class rioCharacter {
         return this.rank;
     }
 
-
+   getMain() {
+        return this.main;
+    }
 }
 
 function calcMythicPlus(rioChar) {

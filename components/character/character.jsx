@@ -2,9 +2,8 @@ import { characterScoreCompare, csvToArray } from "../../utils";
 
 class Character {
   constructor(rioCharacter, alts) {
-    rioCharacter.initialize();
     this.name = rioCharacter.getName();
-    this.realm = rioCharacter.getRealm().replace(" ", "-");
+    this.realm = rioCharacter.getRealm().replace(" ", "-").toLowerCase();
     this.class = rioCharacter.getClass();
     this.spec = rioCharacter.getSpec();
 
@@ -20,17 +19,7 @@ class Character {
     this.alts = [];
 
     if (alts.length > 0) {
-      var altMap = csvToArray(process.env.GUILD_ALTS);
-      var altMapResults = altMap.filter(x => x.endsWith("|" + this.name));
-      var altNames = new Array();
-
-      altMapResults.forEach(element => {
-        altNames.push(element.substring(0, element.indexOf("|")));
-      });
-
-      if (altNames.length > 0) {
-        this.alts = alts.filter(a => altNames.includes(a.getName())).map(x => new Character(x, [])).sort(characterScoreCompare);
-      }
+        this.alts = alts.filter(a => a.getMain() == this.Name).map(x => new Character(x, [])).sort(characterScoreCompare);
     }
   }
 }

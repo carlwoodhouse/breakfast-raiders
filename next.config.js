@@ -1,5 +1,3 @@
-const withNodeConfig = require('next-plugin-node-config');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -30,4 +28,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withNodeConfig(nextConfig)
+module.exports = nextConfig

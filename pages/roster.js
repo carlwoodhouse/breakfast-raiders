@@ -8,7 +8,6 @@ import SocialLinks from '../components/guild/socialLinks';
 import Character from '../components/character/character';
 import { characterScoreCompare } from "../utils";
 
-import config from 'config';
 import rioRoster from '../api/rio/roster';
 
 
@@ -95,10 +94,11 @@ export async function getStaticProps ({ query }) {
 
     // const raiderRange = await googleSheetsService.getRange('Roster!A3:P50');
     // const raiders = JSON.parse(JSON.stringify(raiderRange.sort((a, b) => { if (Number(a[9]) === Number(b[9])) { return  Number(a[1]) > Number(b[1]) ? -1 : 1  }  else return Number(a[9]) < Number(b[9]) ? 1: -1 }).map(x => new Character(x, alts))));
-
+                        
     const g = await rioRoster.getGuild(); 
+
     const alts = g.getAlts();
-    const raiders = g.getRaiders().map(x => new Character(x, alts)).sort(characterScoreCompare);
+    const raiders = g.getRaiders().map(x => new Character(x, [])).sort(characterScoreCompare);
 
   
     var resetDate = new Date();

@@ -18,3 +18,6 @@ export function characterScoreCompare(a, b) {
     if (Number(a.mp_score) === Number(b.mp_score)) { return Number(a.ilvl) > Number(b.ilvl) ? -1 : 1  } else return Number(a.mp_score) < Number(b.mp_score) ? 1: -1 
   }
   
+export function slug(str) {
+    return str.replace(" ", "-").toLowerCase();
+}
