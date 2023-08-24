@@ -61,7 +61,7 @@ export default function Home({ raiders, lastUpdated }) {
                   <td>{alt.mp_score}</td>
                   <td className='class'>{alt.name}</td>
                   <td>{alt.ilvl}</td>
-                  <td>{alt.mp_fifthteens}</td>
+                  <td>{alt.mp_sixteens}</td>
                   <td>{alt.mp_twenties}</td>
                   <td>{alt.mp_max}</td>
                   <td>{alt.mp_total === "10" ? "10+" : alt.mp_total }</td>
