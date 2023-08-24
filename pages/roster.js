@@ -44,7 +44,7 @@ export default function Home({ raiders, lastUpdated }) {
                 <td>{user.mp_score}</td>
                 <td className='class'>{user.name}</td>
                 <td>{user.ilvl}</td>
-                <td>{user.mp_fifthteens}</td>
+                <td>{user.mp_sixteens}</td>
                 <td>{user.mp_twenties}</td>
                 <td>{user.mp_max}</td>
                 <td>{user.mp_total === "10" ? "10+" : user.mp_total}</td>
