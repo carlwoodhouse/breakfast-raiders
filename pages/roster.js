@@ -18,7 +18,7 @@ export default function Home({ raiders, lastUpdated }) {
       <img src="/breakfastraiders.webp" className="img-fluid" alt="..."></img>
       <div className="table-responsive">
         <table className="table table-dark table-hover roster accordion">
-          <thead>
+          <thead style="position: sticky;top: 0">
             <tr>
               <th scope="col">&nbsp;</th>
               <th scope="col">score</th>
