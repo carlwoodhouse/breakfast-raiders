@@ -10,12 +10,12 @@ export default class presentationRoster {
 
         const characters = guild.getRaiders().concat(guild.getAlts());
 
-        const charsWhoCouldBeAlts = characters.filter(x => x.getMain() != null);
+        const charsWhoCouldBeAlts = characters.filter(x => x.getMain() != null && x.getMythicPlusScore() > 0);
         const charsWhoCouldBeMains = characters.filter(x => x.getMain() == null);
 
         const tree = charsWhoCouldBeMains.map(x => new Character(x, charsWhoCouldBeAlts)).sort(characterScoreCompare);
         // we'll add more filtering here for orphan alts
-       return tree.filter(t => t.getAltCount() > 0 || (guild.getRaiderRanks().includes(t.rank) && t.mp_score != 0));
+        return tree.filter(t => t.getAltCount() > 0 || guild.getRaiderRanks().includes(t.rank));
      //  return tree;
     } 
 }
