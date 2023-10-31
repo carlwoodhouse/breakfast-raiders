@@ -27,6 +27,10 @@ class Character {
   getAltCount() {
     return this.alts.length;
   }
+
+  updateAlts(alts) {
+    this.alts = alts;
+  }
 }
 
 export default Character;

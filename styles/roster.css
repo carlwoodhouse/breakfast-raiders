@@ -29,19 +29,6 @@ span.squiggle {
 
 /* table styles */
 
- 
-.table.roster { 
-    overflow: auto; 
-    height: 100px; 
-
-}
-
-.table.roster thead th { 
-    position: sticky; 
-    top: 0; 
-    z-index: 1; 
-}
-
 table.roster tr, table.roster td {
     border-bottom: 0px;
 }

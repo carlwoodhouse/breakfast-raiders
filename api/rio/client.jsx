@@ -16,7 +16,7 @@ export default class rioClient {
   }
 
   async getCharacterMain(name, realm, region = "eu") {
-    var markup = await this.getText("https://raider.io/characters/" + region + "/" + realm + "/" + name);
+    var markup = await this.getText("https://raider.io/characters/" + region + "/" + realm + "/" + encodeURIComponent(name));
 
     if (markup == null) {
       return null;
@@ -64,10 +64,11 @@ export default class rioClient {
 
   async getText(uri, attempt = 0) {
     await pubLimiter.removeTokens(1);
+
     let response;
 
     try {
-      response = await fetch(uri);
+      response = await fetch(uri, { headers: {'Content-Type': 'text/html;charset=UTF-8', 'Accept-Language': 'en-GB'}, method: "GET" }); 
     }
     catch (error) {
       console.log(error);
@@ -78,7 +79,7 @@ export default class rioClient {
       }
 
       if (attempt < 3)
-      {
+      { 
         return await this.getText(uri, attempt + 1);
       }
     }

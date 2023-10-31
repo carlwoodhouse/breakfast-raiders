@@ -59,7 +59,9 @@ class rioCharacter {
             if (main != null) {
                 console.log("map: " + name + " > " + main)
             }
-
+            else {
+                console.log("map: " + name + " > main")
+            }
 
             return new rioCharacter(name, realm, rank, rioChar, main);
         }
