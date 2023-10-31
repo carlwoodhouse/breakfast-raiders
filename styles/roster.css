@@ -28,6 +28,11 @@ span.squiggle {
 }
 
 /* table styles */
+table.roster thead {
+    position: sticky;
+    top: 0;
+}
+
 table.roster tr, table.roster td {
     border-bottom: 0px;
 }
