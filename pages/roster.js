@@ -27,7 +27,7 @@ export default function Home({ raiders, lastUpdated }) {
               <th scope="col">t31</th>
               <th scope="col">m+ (18-19)</th>
               <th scope="col">m+ (20+)</th>
-              <th scope="col">m+ (highest)</th>
+              <th scope="col">m+ (max)</th>
               <th scope="col">m+ (total)</th>
               <th scope="col">tools</th>
             </tr>
