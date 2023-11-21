@@ -24,7 +24,8 @@ export default function Home({ raiders, lastUpdated }) {
               <th scope="col">score</th>
               <th scope="col">name</th>
               <th scope="col">ilvl</th>
-              <th scope="col">m+ (16-19)</th>
+              <th scope="col">t31</th>
+              <th scope="col">m+ (18-19)</th>
               <th scope="col">m+ (20+)</th>
               <th scope="col">m+ (highest)</th>
               <th scope="col">m+ (total)</th>
@@ -44,10 +45,11 @@ export default function Home({ raiders, lastUpdated }) {
                 <td>{user.mp_score}</td>
                 <td className='class'>{user.name}</td>
                 <td>{user.ilvl}</td>
-                <td>{user.mp_sixteens}</td>
+                <td>{user.tierCount}</td>
+                <td>{user.mp_myth}</td>
                 <td>{user.mp_twenties}</td>
                 <td>{user.mp_max}</td>
-                <td>{user.mp_total === "10" ? "10+" : user.mp_total}</td>
+                <td>{user.mp_total === 10 ? "10+" : user.mp_total}</td>
                 <td>
                   <a title='RaiderIO Profile' className='d-inline p-right' href={"https://raider.io/characters/eu/" + user.realm + "/" + user.name } target="_blank"><img src="icons/rio.svg" className="icon" alt="RaiderIO" /></a>
                   <ArmoryLink name={user.name} realm={user.realm} />
@@ -61,10 +63,11 @@ export default function Home({ raiders, lastUpdated }) {
                   <td>{alt.mp_score}</td>
                   <td className='class'>{alt.name}</td>
                   <td>{alt.ilvl}</td>
-                  <td>{alt.mp_sixteens}</td>
+                  <td>{user.tierCount}</td>
+                  <td>{alt.mp_myth}</td>
                   <td>{alt.mp_twenties}</td>
                   <td>{alt.mp_max}</td>
-                  <td>{alt.mp_total === "10" ? "10+" : alt.mp_total }</td>
+                  <td>{alt.mp_total === 10 ? "10+" : alt.mp_total }</td>
                   <td>
                     <a title='RaiderIO Profile' className='d-inline p-right' href={"https://raider.io/characters/eu/" + alt.realm + "/" + alt.name } target="_blank"><img src="icons/rio.svg" className="icon" alt="RaiderIO" /></a>
                     <ArmoryLink name={alt.name} realm={alt.realm} />
