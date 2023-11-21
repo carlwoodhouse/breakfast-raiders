@@ -9,6 +9,7 @@ class Character {
     this.rank = rioCharacter.getRank();
 
     this.ilvl = rioCharacter.getGearLevel();
+    this.tierCount = rioCharacter.getCurrentTierCount();
 
     this.mp_tens = rioCharacter.getMythicPlus10();
     this.mp_sixteens = rioCharacter.getMythicPlus16();
