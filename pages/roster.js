@@ -63,7 +63,7 @@ export default function Home({ raiders, lastUpdated }) {
                   <td>{alt.mp_score}</td>
                   <td className='class'>{alt.name}</td>
                   <td>{alt.ilvl}</td>
-                  <td>{user.tierCount}</td>
+                  <td>{alt.tierCount}</td>
                   <td>{alt.mp_myth}</td>
                   <td>{alt.mp_twenties}</td>
                   <td>{alt.mp_max}</td>
