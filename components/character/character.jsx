@@ -13,6 +13,7 @@ class Character {
 
     this.mp_tens = rioCharacter.getMythicPlus10();
     this.mp_sixteens = rioCharacter.getMythicPlus16();
+    this.mp_myth = rioCharacter.getMythicPlusMythTrack();
     this.mp_max = rioCharacter.getMythicPlusMax();
     this.mp_twenties = rioCharacter.getMythicPlus20();
     this.mp_total = rioCharacter.getMythicPlusTotal();
