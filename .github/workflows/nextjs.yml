@@ -34,6 +34,7 @@ env:
   GUILD_SOCIAL_RANKS: "${{ vars.GUILD_SOCIAL_RANKS }}"
   GUILD_ALT_RANKS: "${{ vars.GUILD_ALT_RANKS }}"
   ADDITIONAL_CHARACTERS: "${{ vars.ADDITIONAL_CHARACTERS }}"
+  RANK_OVERRIDE: "${{ vars.RANK_OVERRIDE }}"
 
 jobs:
   # Build job
