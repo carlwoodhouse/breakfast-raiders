@@ -1,4 +1,4 @@
-import { csvToArray } from '../../utils';
+import { csvToArray, slug } from '../../utils';
 import rioCharacter from './character';
 import rioClient from './client'
 
@@ -20,6 +20,28 @@ export default class rioGuild {
 
     let additionalMembers = await this.populateAdditionalMembers();
     this.members = this.members.concat(additionalMembers);
+
+    if (process.env.RANK_OVERRIDE != undefined && process.env.RANK_OVERRIDE != "") {
+      const charKeys = csvToArray(process.env.RANK_OVERRIDE);
+
+      console.log(charKeys);
+
+      let rankOverides = [];
+
+      for await (const x of charKeys) {
+        // name|realm|rank
+        rankOverides.push(csvToArray(x, "|"));
+      }
+
+      this.members.forEach(chr => {
+        rankOverides.forEach(ro => {
+          if (ro[0] == chr.name && ro[1] == slug(chr.realm))
+          {
+            chr.rank = parseInt(ro[2]);
+          }
+        });
+      });
+    }
   }
 
   getAllRanks() {
